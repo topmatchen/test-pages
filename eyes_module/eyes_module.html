@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>假睫毛產品展示模組</title>
+    <style>
+        :root {
+            --accent-color: #ff85a2; /* 柔和的粉色調，適合美容產品 */
+            --bg-color: #f9f9f9;
+            --card-width: 280px;
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* 外部容器 */
+        .slider-wrapper {
+            width: 95%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        /* 滑動容器 */
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            gap: 20px;
+            padding: 20px 0;
+            cursor: grab; /* 提示可以抓取拖拽 */
+        }
+
+        .slider-container:active {
+            cursor: grabbing;
+        }
+
+        /* 隱藏捲軸 */
+        .slider-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .slider-container::-webkit-scrollbar-track {
+            background: #eee;
+        }
+        .slider-container::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+
+        /* 單個產品卡片 */
+        .slide-item {
+            flex: 0 0 var(--card-width);
+            scroll-snap-align: start;
+            text-decoration: none;
+            color: #333;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        /* 圖片容器 */
+        .image-box {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: #eee;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .slide-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 文字資訊 */
+        .info-box {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info-box h3 {
+            margin: 10px 0 5px;
+            font-size: 1.1rem;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: #777;
+            margin: 0;
+        }
+
+        .price {
+            display: block;
+            margin-top: 10px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* 手機版調整 */
+        @media (max-width: 600px) {
+            :root {
+                --card-width: 220px;
+            }
+            .image-box {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>精選假睫毛系列</h2>
+
+    <div class="slider-wrapper">
+        <div class="slider-container" id="slider">
+            <script>
+                const products = [
+                    { name: "薔薇花語", url: "https://lumifly1314.com/item/rose", img: "https://image.bvshop.tw/4189/product/4189_69b13569c2d9b.png.webp", desc: "順手、偽素顏、適合日常妝容", price:"$399" },
+                    { name: "百合柔光", url: "https://lumifly1314.com/item/lily", img: "https://image.bvshop.tw/4189/product/4189_69b135796567a.png.webp", desc: "順手、偽素顏、新品上市", price:"$399" },
+                    { name: "桃韻花語", url: "https://lumifly1314.com/item/sws", img: "https://image.bvshop.tw/4189/product/4189_69c0d28f60bff.png.webp", desc: "順手、日常標配款", price:"$399" },
+                    { name: "小梨花語", url: "https://lumifly1314.com/item/clf", img: "https://image.bvshop.tw/4189/product/4189_6937931a8e216.png.webp", desc: "順手、整天清新耐看", price:"$399" },
+                    { name: "山茶柔光.咖", url: "https://lumifly1314.com/item/csco", img: "https://image.bvshop.tw/4189/product/4189_6927b2af8ff42.png.webp", desc: "通勤、偽素顏" , price:"$399"},
+                    { name: "山茶柔光", url: "https://lumifly1314.com/item/Shine", img: "https://image.bvshop.tw/4189/product/4189_68a153145a945.png.webp", desc: "偽素顏、不挑場合", price:"$379" },
+                    { name: "裸感珍珠", url: "https://lumifly1314.com/item/Pearl", img: "https://image.bvshop.tw/4189/product/4189_69c3be82d94c9.png.webp", desc: "清新自然" , price:"$579" },
+                    { name: "絨絨花語", url: "https://lumifly1314.com/item/Flower", img: "https://image.bvshop.tw/4189/product/4189_69c3b9db18846.png.webp", desc: "順手、偽素顏", price:"$399"  },
+                    { name: "日向少女", url: "https://lumifly1314.com/item/Girl", img: "https://image.bvshop.tw/4189/product/4189_69c3bbdec981b.png.webp", desc: "自帶柔光", price:"$379"  },
+                    { name: "雛菊信差", url: "https://lumifly1314.com/item/Daisy", img: "https://image.bvshop.tw/4189/product/4189_69c3be5d77f7e.png.webp", desc: "清新氣質必備", price:"$379"  }
+                ];
+
+                const container = document.getElementById('slider');
+                
+                products.forEach(p => {
+                    const html = `
+                        <a href="${p.url}" target="_self" class="slide-item">
+                            <div class="image-box">
+                                <img src="${p.img}" alt="${p.name}">
+                            </div>
+                            <div class="info-box">
+                                <h3>${p.name}</h3>
+                                <p>${p.desc}</p>
+                                <span class="price">${p.price}</span>
+                            </div>
+                        </a>
+                    `;
+                    container.innerHTML += html;
+                });
+            </script>
+        </div>
+    </div>
+
+    <p style="color: #999; margin-top: 20px; font-size: 14px;">(提示：可以使用滑鼠拖曳或左右滑動查看更多圖片)</p>
+
+    <script>
+        // 加入拖曳滑動功能 (Desktop Drag to Scroll)
+        const slider = document.querySelector('.slider-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // 滑動倍速
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+
+</body>
+</html>
