@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <style>
+        /* 基礎容器設定 */
+        .bv-404-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            color: #333;
+        }
+
+        /* 弱化錯誤訊息區 */
+        .error-header {
+            margin-bottom: 50px;
+        }
+        .error-header h1 {
+            font-size: 18px; /* 縮小標題，不要太明顯 */
+            color: #999;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        .error-header p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        /* 商品模組區塊 */
+        .product-module {
+            margin-top: 40px;
+        }
+        .module-title {
+            text-align: left;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 模擬 BVSHOP 商品網格 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #f0f0f0;
+            padding: 10px;
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .product-info h3 {
+            font-size: 14px;
+            height: 40px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .product-price {
+            color: #d44b4b;
+            font-weight: bold;
+        }
+
+        /* 搜尋引導區 */
+        .search-footer {
+            margin-top: 60px;
+            padding: 30px;
+            background-color: #fcfcfc;
+            border-radius: 8px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bv-404-container">
+    
+    <div class="error-header">
+        <h1>頁面可能已搬家或售罄 (404 Not Found)</h1>
+        <p>別擔心，這裡有更多為您精選的好物：</p>
+    </div>
+
+    <div class="product-module">
+        <div class="module-title">
+            <span>🔥 本週熱銷推薦</span>
+            <a href="/" style="font-size: 14px; color: #666;">查看更多</a>
+        </div>
+        
+        <div class="product-grid">
+            <a href="#" class="product-card">
+                <div class="product-img">商品圖片預留區</div>
+                <div class="product-info">
+                    <h3>質感選物系列 - 經典百搭款</h3>
+                    <p class="product-price">NT$ 1,280</p>
+                </div>
+            </a>
+            <a href="#" class="product-card">
+                <div class="product-img">商品圖片預留區</div>
+                <div class="product-info">
+                    <h3>限時折扣商品 - 優雅生活提案</h3>
+                    <p class="product-price">NT$ 850</p>
+                </div>
+            </a>
+            <a href="#" class="product-card">
+                <div class="product-img">商品圖片預留區</div>
+                <div class="product-info">
+                    <h3>新品上市 - 職人工藝小物</h3>
+                    <p class="product-price">NT$ 2,100</p>
+                </div>
+            </a>
+            <a href="#" class="product-card">
+                <div class="product-img">商品圖片預留區</div>
+                <div class="product-info">
+                    <h3>熱賣補貨到 - 極簡風收納</h3>
+                    <p class="product-price">NT$ 490</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="search-footer">
+        <p>沒找到想要的商品嗎？試試看搜尋功能</p>
+        <form action="/search" method="get">
+            <input type="text" name="q" placeholder="請輸入關鍵字..." style="padding: 8px; width: 250px;">
+            <button type="submit" style="padding: 8px 15px;">搜尋</button>
+        </form>
+        <a href="/" class="btn-home">回到官網首頁</a>
+    </div>
+
+</div>
+
+</body>
+</html>
